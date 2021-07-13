@@ -18,7 +18,7 @@ vector<WordType> linearTransform_rowlshift(const vector<WordType>& in, int sbox_
 	vector<WordType> out(sbox_num);
 	for (int i = 0; i < sbox_num; i++)
 		for (int j = 0; j < sbox_size; j++)
-			out[(i + sbox_num + stable[j]) % sbox_num] ^= in[i] & (mask << j);
+			out[(2 * sbox_num - 1 - i - stable[j]) % sbox_num] ^= in[i] & (mask << j);
 	return out;
 }
 
@@ -27,7 +27,7 @@ vector<WordType> linearTransform_rowrshift(const vector<WordType>& in, int sbox_
 	vector<WordType> out(sbox_num);
 	for (int i = 0; i < sbox_num; i++)
 		for (int j = 0; j < sbox_size; j++)
-			out[(i + sbox_num - stable[j]) % sbox_num] ^= in[i] & (mask << j);
+			out[(2 * sbox_num - 1 - i + stable[j]) % sbox_num] ^= in[i] & (mask << j);
 	return out;
 }
 

@@ -7,11 +7,11 @@ using std::endl;
 #include "IterativeSearch.h"
 
 int main() {
-	unique_ptr<Cipher> cipher_ptr = make_cipher("iceberg", AttackType::LAT2);
+	unique_ptr<Cipher> cipher_ptr = make_cipher("present", AttackType::DDT);
 	cipher_ptr->print();
 	IterativeSearcher iterative_searcher(*cipher_ptr);
-	iterative_searcher.search_iterative(1);
-	//iterative_searcher.search_distinguisher(13, 2, 3, 12);
+	iterative_searcher.search_iterative(2);
+	iterative_searcher.search_distinguisher(16, 2, 3, 10);
 
 	return 0;
 }
