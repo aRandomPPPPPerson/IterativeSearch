@@ -6,6 +6,9 @@ using std::set;
 using std::cout;
 using std::endl;
 
+#include <thread>
+using std::thread;
+
 TrailCount TrailCount::operator+(const TrailCount& rhs)const {
 	TrailCount tc = rhs;
 	for (auto it = trail_count.begin(); it != trail_count.end(); it++) {
@@ -349,6 +352,7 @@ BestAnswer MultiStageGraph::get_best_cluster()const {
 	int percent_former = percent;
 	int total_count = graphs[0].head_tail_distance_trails_table.size();
 	std::cout << "# total possible inputs = " << std::dec << total_count << "\n";
+
 	for (auto it = graphs[0].head_tail_distance_trails_table.begin(); it != graphs[0].head_tail_distance_trails_table.end(); it++) {
 		count++;
 		percent = count * 100 / total_count;
@@ -356,6 +360,7 @@ BestAnswer MultiStageGraph::get_best_cluster()const {
 			std::cout << "searching " << std::dec << percent << "%\n";
 			percent_former = percent;
 		}
+		
 		Graph total;
 		total.head_tail_distance_trails_table.insert(*it);
 		for (int i = 1; i < graphs.size(); i++)	total.add(graphs[i]);
